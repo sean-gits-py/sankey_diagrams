@@ -1,0 +1,21 @@
+import plotly.graph_objects as go
+import plotly.io as pio
+
+fig = go.Figure(data=[go.Sankey(
+    node = dict(
+      pad = 15,
+      thickness = 20,
+      line = dict(color = "black", width = 0.5),
+      label = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4", "E1", "E2", "E3", "E4"],
+      color = ["blue", "blue", "blue", "blue", "orange", "orange", "orange", "orange", "green", "green", "green", "green", "red", "red", "red", "red", "purple", "purple", "purple", "purple"]
+    ),
+    link = dict(
+      source = [0, 1, 2, 3, 0, 4, 5, 6, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], # indices correspond to labels
+      target = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 19, 19, 19, 19, 19],
+      value = [8, 4, 6, 2, 2, 8, 4, 2, 1, 4, 6, 4, 2, 1, 2, 3, 4, 5, 6, 7, 8]
+  ))])
+
+fig.update_layout(title_text="Complex Sankey Diagram with Four Nodes of Each Label", font_size=10)
+
+# save figure as PNG image with higher resolution
+pio.write_image(fig, 'sankey_diagram.png', scale=2)
